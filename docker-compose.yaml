@@ -1,11 +1,28 @@
 version: "3.7"
+networks:
+   mynet:
+     driver: bridge
 services:
-  java:
-    restart: always
-    container_name: DeployCrud
-    image: java:8
-    volumes:
-    - .:/usr/src/myapp 
-    working_dir: /usr/src/myapp
-    command: bash -c "cd target && java -jar CrudApi-0.0.1-SNAPSHOT.jar"  
-    
+  web:
+    container_name: web
+    build: .
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    environment:
+      DB_HOST: 'mysql'
+      DB_USER: 'root'
+      DB_PASS: 'root'
+      DB_NAME: 'testdb'
+    networks:
+      - mynet
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'testdb'
+      MYSQL_USER: 'push'
+      MYSQL_PASSWORD: 'push'
+    networks:
+      - mynet
