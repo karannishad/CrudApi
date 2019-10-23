@@ -13,9 +13,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class CrudApiApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException{
 
-		
 		SpringApplication.run(CrudApiApplication.class, args);
 	}
 
