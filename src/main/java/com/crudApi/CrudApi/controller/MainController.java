@@ -1,5 +1,6 @@
 package com.crudApi.CrudApi.controller;
 
+import com.crudApi.CrudApi.Repository.AccountDetailRepo;
 import com.crudApi.CrudApi.Repository.EmployeeRepository;
 import com.crudApi.CrudApi.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,12 @@ public class MainController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @PostMapping(path = "/insert", produces= MediaType.APPLICATION_JSON_VALUE)
+    @Autowired
+    private AccountDetailRepo accountDetailRepo;
+    @PostMapping(path = "/insert", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> insertObject(@RequestBody Employee employee)
     {
+        
         employeeRepository.save(employee);
         return new ResponseEntity<Object>(employee,HttpStatus.OK);
     }
@@ -38,7 +42,8 @@ public class MainController {
     }
 
     @PutMapping(path = "/update", produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> updateObject(@RequestBody Employee employee)
+    public ResponseEntity<Object> updateObject(@RequestBody Employee employee
+    )
     {
         employeeRepository.save(employee);
         return new ResponseEntity<Object>(employee,HttpStatus.OK);
@@ -50,5 +55,11 @@ public class MainController {
         employeeRepository.deleteById(Long.parseLong(id));
         return new ResponseEntity<Object>("Employee deleted with id "+id,HttpStatus.OK);
     }
+
+    @DeleteMapping(path = "/deleteqq")
+    public void getAccount(){
+        accountDetailRepo.deleteByAccNo("1");
+    }
+
 
 }
