@@ -15,50 +15,42 @@ import java.util.List;
 @RestController
 public class MainController {
 
+
     @Autowired
     private EmployeeRepository employeeRepository;
 
     @Autowired
     private AccountDetailRepo accountDetailRepo;
+
     @PostMapping(path = "/insert", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> insertObject(@RequestBody Employee employee)
-    {
-        
+    public ResponseEntity<Object> insertObject(@RequestBody Employee employee) {
         employeeRepository.save(employee);
-        return new ResponseEntity<Object>(employee,HttpStatus.OK);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/get", produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getObject()
-    {
-        return new ResponseEntity<Object>(employeeRepository.findAll(),HttpStatus.OK);
+    @GetMapping(path = "/get", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getObject() {
+
+        return new ResponseEntity<>(employeeRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/get/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getObjectById(@RequestParam("id") String id)
-    {
-        List<Employee> employees=employeeRepository.findAllById(Collections.singleton(Long.parseLong(id)));
-        return new ResponseEntity<Object>(employees.get(0),HttpStatus.OK);
+    @GetMapping(path = "/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getObjectById(@RequestParam("id") String id) {
+        List<Employee> employees = employeeRepository.findAllById(Collections.singleton(Long.parseLong(id)));
+        return new ResponseEntity<>(employees.get(0), HttpStatus.OK);
     }
 
-    @PutMapping(path = "/update", produces= MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> updateObject(@RequestBody Employee employee
-    )
-    {
+    ) {
         employeeRepository.save(employee);
-        return new ResponseEntity<Object>(employee,HttpStatus.OK);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/delete", produces= MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> deleteObject(@RequestParam("id") String id)
-    {
+    @DeleteMapping(path = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> deleteObject(@RequestParam("id") String id) {
         employeeRepository.deleteById(Long.parseLong(id));
-        return new ResponseEntity<Object>("Employee deleted with id "+id,HttpStatus.OK);
-    }
-
-    @DeleteMapping(path = "/deleteqq")
-    public void getAccount(){
-        accountDetailRepo.deleteByAccNo("1");
+        return new ResponseEntity<>("Employee deleted with id " + id, HttpStatus.OK);
     }
 
 

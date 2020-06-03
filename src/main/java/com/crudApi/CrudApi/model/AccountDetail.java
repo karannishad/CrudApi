@@ -13,6 +13,15 @@ public class AccountDetail {
     @Id
     private String accId;
 
+    @Override
+    public String toString() {
+        return "AccountDetail{" +
+                "accNo='" + accNo + '\'' +
+                ", accId='" + accId + '\'' +
+                ", Name='" + Name + '\'' +
+                '}';
+    }
+
     private String Name;
 
     public String getAccNo() {

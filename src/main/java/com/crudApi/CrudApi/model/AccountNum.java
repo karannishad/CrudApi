@@ -7,6 +7,14 @@ public class AccountNum implements Serializable {
     private String accNo;
     private String accId;
 
+    @Override
+    public String toString() {
+        return "AccountNum{" +
+                "accNo='" + accNo + '\'' +
+                ", accId='" + accId + '\'' +
+                '}';
+    }
+
     public AccountNum() {
     }
 
