@@ -1,5 +1,6 @@
 package com.crudApi.CrudApi;
 
+import io.micrometer.core.instrument.config.MeterFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -11,10 +12,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
+
 public class CrudApiApplication {
 
-    public static void main(String[] args) throws InterruptedException {
+
+    public static void main(String[] args) {
         SpringApplication.run(CrudApiApplication.class, args);
+
     }
 
     @Bean
@@ -25,7 +29,9 @@ public class CrudApiApplication {
                 .build().host("hh");
 
     }
-
-
+    @Bean
+    public MeterFilter excludeTomcatFilter() {
+        return MeterFilter.denyNameStartsWith("tomcat");
+    }
 
 }

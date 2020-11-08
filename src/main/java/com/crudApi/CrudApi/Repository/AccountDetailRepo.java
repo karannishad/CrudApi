@@ -2,12 +2,14 @@ package com.crudApi.CrudApi.Repository;
 
 import com.crudApi.CrudApi.model.AccountDetail;
 import com.crudApi.CrudApi.model.AccountNum;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.RepositoryDefinition;
 
-@Repository
-public interface AccountDetailRepo  extends JpaRepository<AccountDetail, AccountNum> {
+import java.util.List;
 
-        void deleteByAccNo(String AccNo);
+@RepositoryDefinition(domainClass = AccountDetail.class,idClass = AccountNum.class)
+public interface AccountDetailRepo {
+
+        List<AccountDetail> findAllByAccNo(String AccNo);
+        List<AccountDetail> findAll();
 
 }
