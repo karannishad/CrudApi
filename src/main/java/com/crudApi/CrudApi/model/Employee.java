@@ -1,5 +1,6 @@
 package com.crudApi.CrudApi.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -9,10 +10,14 @@ import java.time.LocalDateTime;
 public class Employee {
     @Id
     private Long id;
+
     private String name_me;
     private String age;
     private LocalDateTime timestamp;
+
+
     @OneToOne
+
     AccountDetail accountDetail;
 
     public Employee() {
@@ -66,4 +71,5 @@ public class Employee {
     public void setAccountDetail(AccountDetail accountDetail) {
         this.accountDetail = accountDetail;
     }
+
 }

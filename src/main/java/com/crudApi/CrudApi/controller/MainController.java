@@ -22,16 +22,21 @@ import java.util.List;
 import java.util.Optional;
 
 
+
 @RestController
 public class MainController {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
+
+
 
     @Autowired
     Environment environment;
     @Value("${env:dev1}")
     private String env;
+
     @Autowired
     private EmployeeRepository employeeRepository;
+
 
     @Autowired
     private AccountService accountService;
@@ -42,9 +47,11 @@ public class MainController {
     @PostMapping(path = "/insert", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> insertObject(@RequestBody Employee employee) {
         employee.setTimestamp(LocalDateTime.now());
+
         employeeRepository.save(employee);
-        return new ResponseEntity<>(employee, HttpStatus.OK);
+        return new ResponseEntity<Object>(employee, HttpStatus.OK);
     }
+
 
     @LogTime(name = "get")
     @Cacheable("account")
@@ -60,12 +67,13 @@ public class MainController {
     public String getObjectById(@RequestParam("id") String id) {
 
         return accountService.findAccIdByAccount(id).orElse(null);
+
     }
 
     @PutMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> updateObject(@RequestBody Employee employee
-    ) {
+    public ResponseEntity<Object> updateObject(@RequestBody Employee employee) {
         employeeRepository.save(employee);
+
         return new ResponseEntity<>(employee, HttpStatus.OK);
 
     }
@@ -73,7 +81,9 @@ public class MainController {
     @DeleteMapping(path = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> deleteObject(@RequestParam("id") String id) {
         employeeRepository.deleteById(Long.parseLong(id));
-        return new ResponseEntity<>("Employee deleted with id " + id, HttpStatus.OK);
+
+        return new ResponseEntity<Object>("Employee deleted with id " + id, HttpStatus.OK);
+
     }
 
     @GetMapping(value = "/test", produces = MediaType.APPLICATION_JSON_VALUE)

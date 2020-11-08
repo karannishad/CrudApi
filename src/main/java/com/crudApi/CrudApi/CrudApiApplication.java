@@ -1,6 +1,5 @@
 package com.crudApi.CrudApi;
 
-import io.micrometer.core.instrument.config.MeterFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -29,9 +28,6 @@ public class CrudApiApplication {
                 .build().host("hh");
 
     }
-    @Bean
-    public MeterFilter excludeTomcatFilter() {
-        return MeterFilter.denyNameStartsWith("tomcat");
-    }
+
 
 }
