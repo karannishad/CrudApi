@@ -24,6 +24,7 @@ import java.util.List;
 @RestController
 public class MainController {
 
+
     private static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
 
 
@@ -78,7 +79,9 @@ public class MainController {
     @DeleteMapping(path = "/delete", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> deleteObject(@RequestParam("id") String id) {
         employeeRepository.deleteById(Long.parseLong(id));
+
         return new ResponseEntity<Object>("Employee deleted with id " + id, HttpStatus.OK);
+
     }
 
 

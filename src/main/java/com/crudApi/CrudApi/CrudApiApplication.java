@@ -1,30 +1,20 @@
 package com.crudApi.CrudApi;
 
-<<<<<<< HEAD
-import com.sun.org.apache.xml.internal.utils.ThreadControllerWrapper;
-=======
-import io.micrometer.core.instrument.config.MeterFilter;
->>>>>>> d8d23ff...  clean up and prometheus custom configs
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.Tag;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-<<<<<<< HEAD
-public class CrudApiApplication {
-
-	public static void main(String[] args) throws InterruptedException{
-
-		SpringApplication.run(CrudApiApplication.class, args);
-	}
-=======
 @EnableSwagger2
-
 public class CrudApiApplication {
 
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(CrudApiApplication.class, args);
-
     }
 
     @Bean
@@ -35,10 +25,5 @@ public class CrudApiApplication {
                 .build().host("hh");
 
     }
-    @Bean
-    public MeterFilter excludeTomcatFilter() {
-        return MeterFilter.denyNameStartsWith("tomcat");
-    }
->>>>>>> d8d23ff...  clean up and prometheus custom configs
 
 }
