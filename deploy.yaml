@@ -1,0 +1,24 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  labels: 
+    app: crudapi-deployment
+  name: crudapi-deployment
+spec: 
+  replicas: 3
+  selector: 
+    matchLabels: 
+      app: crudapi-deployment
+  template: 
+    metadata: 
+      labels: 
+        app: crudapi-deployment
+    spec: 
+      containers: 
+        - name: crudapi-deployment
+          image: crudapi-docker
+          imagePullPolicy: Never
+          ports: 
+            - containerPort: 8080
+
