@@ -240,7 +240,7 @@
                 <configuration>
 
                     <to>
-                        <image>crudapi-docker</image>
+                        <image>karannishad/crudapi-docker</image>
                     </to>
                     <container>
                         <mainClass>com.crudApi.CrudApiApplication</mainClass>
