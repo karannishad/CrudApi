@@ -21,10 +21,12 @@ public class LogTimeHandler {
 
     @Around("@annotation(logTime)")
     public Object handleLogTimeEvent(ProceedingJoinPoint joinPoint, LogTime logTime) throws Throwable {
+        logger.info(" Method Start {}",joinPoint.getSignature());
         metricPublisher.createMetric(logTime.name());
         Histogram.Timer timer = metricPublisher.startTimer(logTime.name());
         Object obj = joinPoint.proceed();
         timer.observeDuration();
+        logger.info(" Method End {}",joinPoint.getSignature());
         return obj;
     }
 }

@@ -1,34 +1,36 @@
 package com.crudApi.CrudApi.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import java.time.LocalDateTime;
+import javax.persistence.*;
+
 
 @Entity
 public class Employee {
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
-
     private String name_me;
     private String age;
-    private LocalDateTime timestamp;
 
 
     @OneToOne
-
     AccountDetail accountDetail;
 
     public Employee() {
     }
 
-    public Employee(Long id, String name_me, String age, LocalDateTime timestamp, AccountDetail accountDetail) {
+    public Employee(Long id, String name_me, String age) {
+        this.id = id;
+        this.name_me = name_me;
+        this.age = age;
+    }
+
+    public Employee(Long id, String name_me, String age, AccountDetail accountDetail) {
 
         this.id = id;
         this.name_me = name_me;
         this.age = age;
-        this.timestamp = timestamp;
+
         this.accountDetail = accountDetail;
     }
 
@@ -54,14 +56,6 @@ public class Employee {
 
     public void setAge(String age) {
         this.age = age;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
     }
 
     public AccountDetail getAccountDetail() {

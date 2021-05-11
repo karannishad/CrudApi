@@ -19,9 +19,11 @@ public class MetricPublisher {
     public void createMetric(String metricName) {
         if (!metric.containsKey(metricName))
             metric.put(metricName, Histogram.build().
-                    name(String.format(HISTOGRAM_METRIC_NAME, metricName))
+//                    name(String.format(HISTOGRAM_METRIC_NAME, metricName))
+        name("flink_task_manager_allocation_count")
                     .help("Metric for Response Time and Request Count").register(collectorRegistry));
     }
+
 
     public Histogram.Timer startTimer(String metricName) {
         return metric.get(metricName).startTimer();

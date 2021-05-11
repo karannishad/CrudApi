@@ -1,14 +1,26 @@
 pipeline {
-    agent any
+//     agent none
+    agent {
+                docker { image 'maven:3.3.3' }
+    }
     triggers{
-    pollSCM('*/15 * * * *')
+        pollSCM('*/15 * * * *')
     }
-    stage("Test"){
-    when{branch "master"}
-    steps{
-    sh '''
-    mvn test
-    '''
-    }
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('test') {
+                    steps {
+                        sh 'mvn test'
+                    }
+        }
+        stage('push build') {
+                    steps {
+                        sh 'mvn spring-boot:build-image'
+         }
+        }
     }
 }
