@@ -30,12 +30,12 @@ pipeline {
             agent {
                     docker {
                             image 'sonarsource/sonar-scanner-cli:latest'
-                            args '--network host '
+                            args '--network host -Dsonar.projectKey=crudapi -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d81cf4f13bc2a0fa5a2f253035861f22ab4edef7'
                     }
             }
-                    steps {
-                        sh '-Dsonar.projectKey=crudapi -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d81cf4f13bc2a0fa5a2f253035861f22ab4edef7'
-        }
+//                     steps {
+//                         sh '-Dsonar.projectKey=crudapi -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d81cf4f13bc2a0fa5a2f253035861f22ab4edef7'
+//         }
         }
     }
 }
