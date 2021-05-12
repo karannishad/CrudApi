@@ -21,8 +21,14 @@ pipeline {
                     }
         }
         stage('push build') {
+            agent {
+                    docker {
+                            image 'sonarsource/sonar-scanner-cli:latest'
+                            args '--network host -v $(pwd):.'
+                    }
+            }
                     steps {
-                        sh 'mvn spring-boot:build-image'
+                        sh '-Dsonar.projectKey=crudapi -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d81cf4f13bc2a0fa5a2f253035861f22ab4edef7'
         }
         }
     }
