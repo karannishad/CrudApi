@@ -30,7 +30,7 @@ pipeline {
             agent {
                     docker {
                             image 'sonarsource/sonar-scanner-cli:latest'
-                            args '--network host -v $(pwd):.'
+                            args '--network host '
                     }
             }
                     steps {
