@@ -19,11 +19,11 @@ pipeline {
                 agent {
                         docker {
                                 image 'sonarsource/sonar-scanner-cli:latest'
-                                args '--network host -e SONAR_LOGIN="d81cf4f13bc2a0fa5a2f253035861f22ab4edef7"'
+                                args '--network host '//'-e SONAR_LOGIN="d81cf4f13bc2a0fa5a2f253035861f22ab4edef7"'
                         }
                 }
                 steps {
-                    sh 'sonar-scanner -Dsonar.projectKey=crudapi -Dsonar.java.binaries=**/*'// -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d81cf4f13bc2a0fa5a2f253035861f22ab4edef7'
+                    sh 'sonar-scanner -Dsonar.projectKey=crudapi -Dsonar.java.binaries=**/* -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d81cf4f13bc2a0fa5a2f253035861f22ab4edef7'
                 }
         }
     }
